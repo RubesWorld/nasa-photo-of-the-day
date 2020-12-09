@@ -31,7 +31,8 @@ function App() {
 
       <h1>NASA Photo of the day </h1>
     
-      <img src='{info.url}' width="250" height="250"></img>
+      <img src={info.url} width="500" height="500"/>
+
       <Details info={info}/>
       {/* <p>
         Read through the instructions in the README.md file to build your NASA
