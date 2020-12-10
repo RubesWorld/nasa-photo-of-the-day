@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Details from './Details'
+import ReactPlayer from 'react-player'
 
 import axios from 'axios'
 
@@ -11,9 +12,10 @@ const URL='https://api.nasa.gov/planetary/apod?api_key='
 
 function App() {
   const [info,setInfo] = useState([])
+  const [date,setDate] = useState([])
 
   useEffect(()=>{
-    axios.get(`${URL}${API_KEY}&date=2012-03-14`)
+    axios.get(`${URL}${API_KEY}&date=2020-03-31`)
       .then(res=>{
         setInfo(res.data)
       })
@@ -30,9 +32,11 @@ function App() {
     <div className="App">
 
       <h1>NASA Photo of the day </h1>
-    
-      <img src={info.url} width="500" height="500"/>
-
+      <div className='media-container'>
+        {info.media_type !== 'video'  
+        ? <img alt='the sun'src={info.url} width="750" height="750" /> 
+        : <ReactPlayer width="100%" url={info.url} />}
+      </div>
       <Details info={info}/>
       {/* <p>
         Read through the instructions in the README.md file to build your NASA
